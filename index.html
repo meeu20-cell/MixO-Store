@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>MIXO STORE | High-Concept Apparel &amp; Tech Gear</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            gold: '#d4af37',
+                            accent: '#f43f5e',
+                            dark: '#09090b',
+                            card: '#121215'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        mono: ['Space Mono', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts & Lucide Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        html, body {
+            overflow-x: hidden;
+            overflow-y: auto !important;
+            height: auto !important;
+            min-height: 100%;
+            background-color: #09090b;
+        }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .glass-panel {
+            background: rgba(18, 18, 21, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+    </style>
+</head>
+<body class="bg-zinc-950 text-zinc-100 antialiased selection:bg-rose-500 selection:text-white">
+
+    <!-- Top Ticker Bar -->
+    <div class="bg-zinc-900 border-b border-zinc-800/80 text-zinc-300 text-[10px] sm:text-xs py-2 px-4 uppercase tracking-widest font-mono flex justify-between items-center overflow-hidden">
+        <span class="flex items-center gap-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-rose-500 animate-pulse"></span>
+            DROP 004 LIVE • GLOBAL EXPRESS SHIPPING
+        </span>
+        <span class="hidden sm:inline-block text-zinc-500">CODE: <strong class="text-white">MIXO15</strong> FOR 15% OFF</span>
+    </div>
+
+    <!-- Main Navigation Bar -->
+    <header class="sticky top-0 z-40 bg-zinc-950/90 backdrop-blur-md border-b border-zinc-800/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+            
+            <!-- Brand Logo -->
+            <a href="#" class="flex items-center gap-3 text-2xl font-black tracking-tighter uppercase text-white group">
+                <span class="w-10 h-10 rounded-xl bg-gradient-to-tr from-rose-600 via-zinc-800 to-zinc-900 border border-rose-500/30 flex items-center justify-center text-white font-black text-xl shadow-2xl group-hover:border-rose-500 transition-all">M</span>
+                <span class="tracking-widest font-extrabold text-xl">MIXO <span class="text-rose-500 font-light">STORE</span></span>
+            </a>
+
+            <!-- Search Bar (Desktop) -->
+            <div class="hidden md:flex flex-1 max-w-sm mx-8 relative">
+                <i data-lucide="search" class="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-zinc-500"></i>
+                <input type="text" id="searchInput" oninput="filterProducts()" placeholder="Search catalog..." class="w-full bg-zinc-900/80 border border-zinc-800 rounded-xl pl-10 pr-4 py-2 text-xs font-mono text-zinc-200 placeholder-zinc-600 focus:outline-none focus:border-rose-500 transition">
+            </div>
+
+            <!-- Actions -->
+            <div class="flex items-center gap-3">
+                <select id="currencySelect" onchange="changeCurrency(this.value)" class="bg-zinc-900 border border-zinc-800 rounded-xl text-xs font-mono px-3 py-2 text-zinc-300 focus:outline-none focus:border-rose-500">
+                    <option value="USD">$ USD</option>
+                    <option value="EUR">€ EUR</option>
+                    <option value="GBP">£ GBP</option>
+                </select>
+
+                <button onclick="toggleCartDrawer()" class="p-2.5 rounded-xl bg-rose-600 hover:bg-rose-500 text-white transition relative shadow-lg shadow-rose-600/20 flex items-center gap-2 text-xs font-bold uppercase tracking-wider">
+                    <i data-lucide="shopping-bag" class="w-4 h-4"></i>
+                    <span class="hidden sm:inline">Bag</span>
+                    <span id="cartCount" class="w-5 h-5 bg-white text-zinc-950 text-[10px] font-black rounded-full flex items-center justify-center">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="w-full">
+        <!-- Editorial Hero Section -->
+        <section class="relative py-16 sm:py-28 border-b border-zinc-800/80 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-zinc-900 via-zinc-950 to-zinc-950 px-4 overflow-hidden">
+            <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <div class="lg:col-span-7">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[10px] font-mono tracking-widest uppercase bg-rose-500/10 text-rose-400 border border-rose-500/20 mb-6">
+                        <span class="w-2 h-2 rounded-full bg-rose-500"></span>
+                        SPRING / SUMMER 2026
+                    </div>
+                    <h1 class="text-4xl sm:text-7xl font-black tracking-tight text-white leading-[0.95] mb-6 uppercase">
+                        ENGINEERED <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-rose-500 via-purple-400 to-sky-400">STREETWEAR</span> &amp; GEAR.
+                    </h1>
+                    <p class="text-zinc-400 text-sm sm:text-base max-w-lg mb-8 leading-relaxed font-light">
+                        Minimalist luxury apparel paired with high-performance mobile armor. Designed for those who demand precision in every detail.
+                    </p>
+                    <div class="flex flex-wrap items-center gap-4">
+                        <a href="#products" class="bg-rose-600 hover:bg-rose-500 text-white font-bold px-8 py-4 rounded-xl transition shadow-xl shadow-rose-600/20 text-xs uppercase tracking-widest flex items-center gap-2">
+                            Explore Catalog <i data-lucide="arrow-down" class="w-4 h-4"></i>
+                        </a>
+                        <div class="flex items-center gap-3 px-4 py-3 bg-zinc-900/60 rounded-xl border border-zinc-800 text-xs font-mono text-zinc-400">
+                            <span class="text-white font-bold">4.9 ★</span> Rated by 2,400+ Clients
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Featured Hero Banner Card -->
+                <div class="lg:col-span-5">
+                    <div class="relative glass-panel p-4 rounded-3xl overflow-hidden group">
+                        <div class="aspect-[4/5] rounded-2xl overflow-hidden bg-zinc-900 relative">
+                            <img src="https://images.unsplash.com/photo-1556905055-8f358a7a47b2?w=800&auto=format&fit=crop&q=80" class="w-full h-full object-cover group-hover:scale-105 transition duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-transparent to-transparent"></div>
+                            <div class="absolute bottom-6 left-6 right-6">
+                                <span class="text-[10px] font-mono tracking-widest text-rose-400 uppercase block mb-1">FEATURED ITEM</span>
+                                <h3 class="text-xl font-bold text-white mb-2">Heavyweight Oversized Hoodie</h3>
+                                <p class="text-xs text-zinc-400 mb-4">460 GSM Organic French Terry Cotton</p>
+                                <button onclick="quickView(1)" class="w-full bg-white text-zinc-950 hover:bg-zinc-200 font-bold py-3 rounded-xl transition text-xs uppercase tracking-widest">
+                                    Quick View
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Product Catalog Section -->
+        <section id="products" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+            
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-12 pb-6 border-b border-zinc-800">
+                <div>
+                    <span class="text-xs font-mono tracking-widest text-rose-500 uppercase block mb-2">// CURATED SELECTION</span>
+                    <h2 class="text-3xl font-black text-white tracking-tight uppercase">Featured Products</h2>
+                </div>
+
+                <!-- Filter Controls -->
+                <div class="flex flex-wrap gap-2">
+                    <button onclick="filterCategory('all')" class="cat-btn active px-4 py-2 rounded-xl text-xs font-mono uppercase tracking-wider transition bg-rose-600 text-white" data-cat="all">All</button>
+                    <button onclick="filterCategory('clothing')" class="cat-btn px-4 py-2 rounded-xl text-xs font-mono uppercase tracking-wider transition bg-zinc-900 text-zinc-400 border border-zinc-800 hover:text-white" data-cat="clothing">Apparel</button>
+                    <button onclick="filterCategory('accessories')" class="cat-btn px-4 py-2 rounded-xl text-xs font-mono uppercase tracking-wider transition bg-zinc-900 text-zinc-400 border border-zinc-800 hover:text-white" data-cat="accessories">Phone Gear</button>
+                </div>
+            </div>
+
+            <!-- Product Grid -->
+            <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Javascript dynamic injection -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Luxury Footer -->
+    <footer class="bg-zinc-950 border-t border-zinc-800/80 py-16 text-zinc-400 text-xs px-4">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+            <div>
+                <div class="text-xl font-black text-white uppercase tracking-widest mb-4">MIXO STORE</div>
+                <p class="text-zinc-500 text-xs max-w-sm leading-relaxed">
+                    Engineering luxury modern apparel and protective mobile gear. Built for durability, aesthetics, and performance.
+                </p>
+            </div>
+            <div>
+                <h4 class="font-mono text-white uppercase tracking-widest mb-4">Client Care</h4>
+                <ul class="space-y-2 text-zinc-500 text-xs font-mono">
+                    <li><a href="#" class="hover:text-white transition">Shipping &amp; Global Delivery</a></li>
+                    <li><a href="#" class="hover:text-white transition">Returns &amp; Warranty</a></li>
+                    <li><a href="#" class="hover:text-white transition">Authentication Guarantee</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-mono text-white uppercase tracking-widest mb-4">Payment Methods</h4>
+                <p class="text-zinc-500 text-xs mb-4">Secured with SSL encryption. Accepting Visa, Mastercard, Apple Pay, PayPal.</p>
+                <span class="text-[10px] font-mono text-rose-400 uppercase tracking-widest bg-rose-500/10 px-3 py-1.5 rounded-lg border border-rose-500/20">
+                    $0/MO HOSTING • GITHUB PAGES
+                </span>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto pt-8 border-t border-zinc-900 flex justify-between items-center text-zinc-600 font-mono text-[11px]">
+            <p>© 2026 MIXO STORE INC. ALL RIGHTS RESERVED.</p>
+        </div>
+    </footer>
+
+    <!-- Slide-Out Cart Drawer -->
+    <div id="cartDrawer" class="fixed inset-0 z-50 invisible transition-opacity duration-300 opacity-0">
+        <div onclick="toggleCartDrawer()" class="absolute inset-0 bg-black/80 backdrop-blur-md"></div>
+        <div class="absolute right-0 top-0 bottom-0 w-full max-w-md bg-zinc-950 border-l border-zinc-800 p-6 flex flex-col justify-between shadow-2xl">
+            <div>
+                <div class="flex justify-between items-center pb-4 border-b border-zinc-800">
+                    <h3 class="text-lg font-black uppercase text-white flex items-center gap-2">
+                        <i data-lucide="shopping-bag" class="w-5 h-5 text-rose-500"></i> Your Bag
+                    </h3>
+                    <button onclick="toggleCartDrawer()" class="text-zinc-400 hover:text-white"><i data-lucide="x" class="w-6 h-6"></i></button>
+                </div>
+                
+                <!-- Free Shipping Indicator -->
+                <div class="my-4 bg-zinc-900 p-3 rounded-xl border border-zinc-800">
+                    <div class="flex justify-between text-xs font-mono mb-1">
+                        <span id="shippingText" class="text-zinc-300">Add $75.00 for FREE Shipping</span>
+                        <span id="shippingPercent" class="text-rose-400 font-bold">0%</span>
+                    </div>
+                    <div class="w-full bg-zinc-800 h-1.5 rounded-full overflow-hidden">
+                        <div id="shippingBar" class="bg-rose-500 h-full transition-all duration-300 w-0"></div>
+                    </div>
+                </div>
+
+                <div id="cartItems" class="space-y-4 max-h-[50vh] overflow-y-auto hide-scrollbar my-4">
+                    <!-- Dynamic Cart Items -->
+                </div>
+            </div>
+
+            <div class="border-t border-zinc-800 pt-4 space-y-3 font-mono">
+                <div class="flex justify-between text-xs text-zinc-400">
+                    <span>Subtotal</span>
+                    <span id="cartSubtotal" class="font-bold text-white">$0.00</span>
+                </div>
+                <div class="flex justify-between text-xs text-zinc-400">
+                    <span>Shipping</span>
+                    <span id="cartShipping" class="font-bold text-white">$10.00</span>
+                </div>
+                <div class="flex justify-between text-base font-black text-white pt-2 border-t border-zinc-800">
+                    <span>Total</span>
+                    <span id="cartTotal" class="text-rose-500">$0.00</span>
+                </div>
+                <button onclick="simulateCheckout()" class="w-full bg-rose-600 hover:bg-rose-500 text-white font-bold py-4 rounded-xl transition text-xs uppercase tracking-widest mt-2">
+                    Proceed to Checkout
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick View Product Modal -->
+    <div id="quickViewModal" class="fixed inset-0 z-50 invisible transition-opacity duration-300 opacity-0 flex items-center justify-center p-4">
+        <div onclick="closeQuickView()" class="absolute inset-0 bg-black/80 backdrop-blur-md"></div>
+        <div class="relative bg-zinc-950 border border-zinc-800 rounded-3xl p-6 sm:p-8 max-w-2xl w-full shadow-2xl overflow-hidden z-10">
+            <button onclick="closeQuickView()" class="absolute top-4 right-4 text-zinc-400 hover:text-white p-2">
+                <i data-lucide="x" class="w-6 h-6"></i>
+            </button>
+            <div id="quickViewContent" class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <!-- Modal filled dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Store JavaScript Engine -->
+    <script>
+        const products = [
+            { id: 1, title: 'Heavyweight Oversized Hoodie', category: 'clothing', price: 68.00, image: 'https://images.unsplash.com/photo-1556905055-8f358a7a47b2?w=600&auto=format&fit=crop&q=80', tag: 'Bestseller', specs: '460 GSM Organic Cotton, Custom Boxy Fit' },
+            { id: 2, title: 'MagSafe Titanium Phone Case', category: 'accessories', price: 34.00, image: 'https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?w=600&auto=format&fit=crop&q=80', tag: 'Armor Spec', specs: 'Grade 5 Titanium Bumpers, 15W MagSafe Compatible' },
+            { id: 3, title: 'Acid Wash Heavyweight Tee', category: 'clothing', price: 42.00, image: 'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=600&auto=format&fit=crop&q=80', tag: 'New Drop', specs: '280 GSM Ring-Spun Cotton, Vintage Wash' },
+            { id: 4, title: '3-in-1 Foldable Charging Hub', category: 'accessories', price: 55.00, image: 'https://images.unsplash.com/photo-1622445268465-842276858316?w=600&auto=format&fit=crop&q=80', tag: 'Fast Charge', specs: 'Anodized Aluminum Frame, Simultaneous 25W Charging' },
+            { id: 5, title: 'Tactical Cargo Sweatpants', category: 'clothing', price: 75.00, image: 'https://images.unsplash.com/photo-1552902865-b72c031ac5ea?w=600&auto=format&fit=crop&q=80', tag: 'Restocked', specs: 'Water-Repellent Coating, Deep Utility Pockets' },
+            { id: 6, title: 'Sapphire Lens Protector Shield', category: 'accessories', price: 18.00, image: 'https://images.unsplash.com/photo-1584438784894-089d6a62b8fa?w=600&auto=format&fit=crop&q=80', tag: 'Essential', specs: '9H Sapphire Glass Clarity, Anti-Reflective Coating' }
+        ];
+
+        let cart = [];
+        let currency = 'USD';
+        const rates = { USD: 1, EUR: 0.92, GBP: 0.79 };
+        const symbols = { USD: '$', EUR: '€', GBP: '£' };
+
+        function renderProducts(items = products) {
+            const grid = document.getElementById('productGrid');
+            grid.innerHTML = items.map(p => `
+                <div class="glass-panel p-5 rounded-3xl flex flex-col justify-between group hover:border-zinc-700 transition duration-500">
+                    <div>
+                        <div class="relative aspect-square rounded-2xl overflow-hidden bg-zinc-900 mb-4">
+                            <img src="${p.image}" alt="${p.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-700">
+                            <span class="absolute top-3 left-3 bg-zinc-950/80 backdrop-blur-md text-zinc-200 font-mono text-[9px] uppercase tracking-widest px-2.5 py-1 rounded-lg border border-zinc-800">${p.tag}</span>
+                            <button onclick="quickView(${p.id})" class="absolute bottom-3 left-3 right-3 bg-zinc-950/90 hover:bg-white hover:text-zinc-950 text-white py-2 rounded-xl text-xs font-mono uppercase tracking-wider transition opacity-0 group-hover:opacity-100">
+                                Quick View
+                            </button>
+                        </div>
+                        <span class="text-[10px] font-mono tracking-widest uppercase text-rose-500 block mb-1">${p.category}</span>
+                        <h3 class="font-bold text-white text-base leading-snug mb-1">${p.title}</h3>
+                        <p class="text-xs text-zinc-500 font-mono mb-4">${p.specs}</p>
+                    </div>
+                    <div class="pt-4 border-t border-zinc-800/80 flex items-center justify-between font-mono">
+                        <span class="text-lg font-black text-white">${symbols[currency]}${(p.price * rates[currency]).toFixed(2)}</span>
+                        <button onclick="addToCart(${p.id})" class="bg-rose-600 hover:bg-rose-500 text-white font-bold text-xs px-4 py-2.5 rounded-xl transition flex items-center gap-1.5 uppercase tracking-wider">
+                            <i data-lucide="plus" class="w-4 h-4"></i> Add
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+            lucide.createIcons();
+        }
+
+        function filterCategory(cat) {
+            document.querySelectorAll('.cat-btn').forEach(btn => {
+                if (btn.dataset.cat === cat) {
+                    btn.className = "cat-btn active px-4 py-2 rounded-xl text-xs font-mono uppercase tracking-wider transition bg-rose-600 text-white";
+                } else {
+                    btn.className = "cat-btn px-4 py-2 rounded-xl text-xs font-mono uppercase tracking-wider transition bg-zinc-900 text-zinc-400 border border-zinc-800 hover:text-white";
+                }
+            });
+            if (cat === 'all') renderProducts(products);
+            else renderProducts(products.filter(p => p.category === cat));
+        }
+
+        function filterProducts() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            renderProducts(products.filter(p => p.title.toLowerCase().includes(query)));
+        }
+
+        function quickView(id) {
+            const p = products.find(item => item.id === id);
+            const content = document.getElementById('quickViewContent');
+            content.innerHTML = `
+                <div class="aspect-square rounded-2xl overflow-hidden bg-zinc-900 border border-zinc-800">
+                    <img src="${p.image}" class="w-full h-full object-cover">
+                </div>
+                <div class="flex flex-col justify-between">
+                    <div>
+                        <span class="text-[10px] font-mono tracking-widest text-rose-500 uppercase block mb-1">${p.category}</span>
+                        <h3 class="text-xl font-bold text-white mb-2">${p.title}</h3>
+                        <p class="text-2xl font-black font-mono text-white mb-4">${symbols[currency]}${(p.price * rates[currency]).toFixed(2)}</p>
+                        <p class="text-xs text-zinc-400 leading-relaxed mb-4">${p.specs}</p>
+                        
+                        ${p.category === 'clothing' ? `
+                            <div class="mb-4">
+                                <label class="text-[10px] font-mono uppercase text-zinc-400 block mb-2">Select Size</label>
+                                <div class="flex gap-2">
+                                    <button class="px-3 py-1.5 bg-zinc-900 border border-zinc-700 text-xs font-mono text-white rounded-lg">S</button>
+                                    <button class="px-3 py-1.5 bg-rose-600 border border-rose-500 text-xs font-mono text-white rounded-lg font-bold">M</button>
+                                    <button class="px-3 py-1.5 bg-zinc-900 border border-zinc-700 text-xs font-mono text-white rounded-lg">L</button>
+                                    <button class="px-3 py-1.5 bg-zinc-900 border border-zinc-700 text-xs font-mono text-white rounded-lg">XL</button>
+                                </div>
+                            </div>
+                        ` : ''}
+                    </div>
+                    <button onclick="addToCart(${p.id}); closeQuickView();" class="w-full bg-rose-600 hover:bg-rose-500 text-white font-bold py-3.5 rounded-xl transition text-xs font-mono uppercase tracking-widest">
+                        Add To Bag • ${symbols[currency]}${(p.price * rates[currency]).toFixed(2)}
+                    </button>
+                </div>
+            `;
+            const modal = document.getElementById('quickViewModal');
+            modal.classList.remove('invisible', 'opacity-0');
+        }
+
+        function closeQuickView() {
+            const modal = document.getElementById('quickViewModal');
+            modal.classList.add('invisible', 'opacity-0');
+        }
+
+        function addToCart(id) {
+            const item = cart.find(c => c.id === id);
+            if (item) item.qty++;
+            else cart.push({ id, qty: 1 });
+            updateCart();
+            toggleCartDrawer(true);
+        }
+
+        function updateCart() {
+            const cartItems = document.getElementById('cartItems');
+            const cartCount = document.getElementById('cartCount');
+            cartCount.innerText = cart.reduce((sum, item) => sum + item.qty, 0);
+
+            if (cart.length === 0) {
+                cartItems.innerHTML = `<p class="text-zinc-500 text-center py-8 font-mono text-xs uppercase">Your bag is empty.</p>`;
+            } else {
+                cartItems.innerHTML = cart.map(c => {
+                    const p = products.find(prod => prod.id === c.id);
+                    return `
+                        <div class="flex items-center gap-3 bg-zinc-900 p-3 rounded-2xl border border-zinc-800">
+                            <img src="${p.image}" class="w-14 h-14 object-cover rounded-xl">
+                            <div class="flex-1">
+                                <h4 class="text-xs font-bold text-white leading-tight">${p.title}</h4>
+                                <span class="text-xs font-mono text-rose-500">${symbols[currency]}${(p.price * rates[currency]).toFixed(2)}</span>
+                            </div>
+                            <div class="flex items-center gap-2 bg-zinc-950 px-2.5 py-1 rounded-lg border border-zinc-800 font-mono">
+                                <button onclick="changeQty(${p.id}, -1)" class="text-zinc-400 hover:text-white">-</button>
+                                <span class="text-xs font-bold text-white">${c.qty}</span>
+                                <button onclick="changeQty(${p.id}, 1)" class="text-zinc-400 hover:text-white">+</button>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            }
+
+            const subtotal = cart.reduce((sum, c) => {
+                const p = products.find(prod => prod.id === c.id);
+                return sum + (p.price * c.qty);
+            }, 0);
+
+            const shipping = subtotal >= 75 || subtotal === 0 ? 0 : 10;
+            const total = subtotal + shipping;
+
+            document.getElementById('cartSubtotal').innerText = `${symbols[currency]}${(subtotal * rates[currency]).toFixed(2)}`;
+            document.getElementById('cartShipping').innerText = shipping === 0 ? 'FREE' : `${symbols[currency]}${(shipping * rates[currency]).toFixed(2)}`;
+            document.getElementById('cartTotal').innerText = `${symbols[currency]}${(total * rates[currency]).toFixed(2)}`;
+
+            const pct = Math.min(100, (subtotal / 75) * 100);
+            document.getElementById('shippingBar').style.width = pct + '%';
+            document.getElementById('shippingPercent').innerText = Math.round(pct) + '%';
+            document.getElementById('shippingText').innerText = subtotal >= 75 ? 'Free Shipping Unlocked!' : `Add ${symbols[currency]}${((75 - subtotal) * rates[currency]).toFixed(2)} for FREE Shipping`;
+        }
+
+        function changeQty(id, delta) {
+            const item = cart.find(c => c.id === id);
+            if (item) {
+                item.qty += delta;
+                if (item.qty <= 0) cart = cart.filter(c => c.id !== id);
+            }
+            updateCart();
+        }
+
+        function toggleCartDrawer(open) {
+            const drawer = document.getElementById('cartDrawer');
+            if (open || drawer.classList.contains('invisible')) {
+                drawer.classList.remove('invisible', 'opacity-0');
+            } else {
+                drawer.classList.add('invisible', 'opacity-0');
+            }
+        }
+
+        function changeCurrency(val) {
+            currency = val;
+            renderProducts();
+            updateCart();
+        }
+
+        function simulateCheckout() {
+            if (cart.length === 0) return alert('Your shopping bag is empty!');
+            alert('🎉 Checkout simulated! Connect Stripe Payment Links or PayPal for direct live payments.');
+        }
+
+        renderProducts();
+        lucide.createIcons();
+    </script>
+</body>
+</html>
